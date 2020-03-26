@@ -1,6 +1,10 @@
-from django.contrib.auth.middleware import AuthenticationMiddleware, LoginRequiredAuthenticationMiddleware
-from django.contrib.auth.models import User, AnonymousUser
-from django.contrib.auth.views import LoginView, PasswordChangeView, redirect_to_login
+from django.contrib.auth.middleware import (
+    AuthenticationMiddleware, LoginRequiredAuthenticationMiddleware,
+)
+from django.contrib.auth.models import AnonymousUser, User
+from django.contrib.auth.views import (
+    LoginView, PasswordChangeView, redirect_to_login,
+)
 from django.http import HttpRequest, HttpResponse
 from django.test import TestCase
 
@@ -75,5 +79,3 @@ class TestLoginRequiredAuthenticationMiddleware(TestCase):
         self.request.user = self.user
         res = self.middleware.process_view(self.request, PasswordChangeView.as_view(), (), {})
         self.assertIsNone(res)
-
-
